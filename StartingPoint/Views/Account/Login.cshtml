@@ -1,0 +1,69 @@
+﻿@model StartingPoint.Models.AccountViewModels.LoginViewModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+@*<p class="login-box-msg">Sign in to start your session</p>*@
+<form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+    <input type="hidden" asp-for="Longitude" id="Longitude" />
+    <input type="hidden" asp-for="Latitude" id="Latitude" />
+    <div>
+        <label asp-for="Email"></label>
+        <div class="input-group mb-3">
+            <input asp-for="Email" type="email" value="admin@gmail.com" class="form-control" placeholder="Email" />
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-envelope"></span>
+                </div>
+            </div>
+        </div>
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Password"></label>
+        <div class="input-group mb-3">
+            <input asp-for="Password" type="password" value="123" class="form-control" placeholder="Password" />
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                </div>
+            </div>
+        </div>
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <div class="row">
+        <div class="col-8">
+            <div class="icheck-primary">
+                <input type="checkbox" asp-for="RememberMe" id="remember">
+                <label for="remember">
+                    Remember Me
+                </label>
+            </div>
+        </div>
+        <div class="col-12">
+            <button type="submit" id="btnUserLogin" onclick="SendGeolocation()" class="btn btn-primary btn-sm btn-block">Sign In</button>
+        </div>
+    </div>
+    
+    <a asp-action="ForgotPassword" class="">I forgot my password</a><br>
+    @*<a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" class="text-center">Register a new membership</a>*@
+    <span class="text-danger">@Html.ValidationSummary(false)</span>
+</form>
+
+<script src="~/js/GetGeolocation.js"></script>
+@section Scripts{
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    <script>
+        //$("#btnUserLogin").trigger('click');
+        var result = "@ViewBag.IsLoginSucceeded";
+        if (result != '')
+            toastr.error("@ViewBag.IsLoginSucceeded");
+
+        $(document).ready(function () {
+            GetGeolocation();
+        });
+    </script>
+}
+

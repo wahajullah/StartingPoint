@@ -1,0 +1,116 @@
+@model StartingPoint.Models.MaterialViewModel.MaterialCRUDViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div calss="row">
+    <form asp-action="AddEdit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="CreatedDate" />
+        <input type="hidden" asp-for="CreatedBy" />
+
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label asp-for="MaterialId" class="control-label small"></label>
+                <input asp-for="MaterialId" readonly="true" class="form-control form-control-sm" />
+                <span asp-validation-for="MaterialId" class="text-danger"></span>               
+            </div>
+            <div class="form-group col">
+                <label asp-for="ServiceId" class="control-label small"></label>                 
+                     <select asp-for="ServiceId" ondurationchange="abc"  asp-items="@ViewBag._LoadddlService" id="ServiceId" class="form-control-sm" style="width:100%;">
+                         <option disabled selected>--- SELECT ---</option>
+                         <span onchange="abc()" asp-validation-for="ServiceId" class="text-danger"></span>
+                    </select>                
+            </div>
+            <div class="form-group col">
+                <label asp-for="MaterialGroupId" class="control-label small"></label>                 
+                     <select asp-for="MaterialGroupId"   asp-items="@ViewBag._LoadddlMaterialGroup"  id="MaterialGroupId" class="form-control-sm" style="width:100%;">
+                         <option disabled selected>--- SELECT ---</option>
+                         <span  asp-validation-for="MaterialGroupId" class="text-danger"></span>
+                    </select>
+            </div>
+        </div>
+        <div class="form-row">
+             <div class="form-group col">
+                 <label asp-for="Description" class="control-label small"></label>
+                 <input asp-for="Description" class="form-control form-control-sm" />
+                 <span asp-validation-for="Description" class="text-danger"></span> 
+            </div>
+        </div>
+        <div class="form-row">            
+            <div class="form-group col">
+                <label asp-for="Unit" class="control-label small" small></label>
+                <input asp-for="Unit" class="form-control form-control-sm" />
+                <span asp-validation-for="Unit" class="text-danger"></span>             
+            </div>
+            <div class="form-group col">
+                <label asp-for="Rate" class="control-label small" small></label>
+                <input asp-for="Rate" class="form-control form-control-sm" />
+                <span asp-validation-for="Rate" class="text-danger"></span>
+            </div>
+            <div class="form-group col">
+                <label asp-for="Brand" class="control-label small" small></label>
+                <input asp-for="Brand" class="form-control form-control-sm" />
+                <span asp-validation-for="Brand" class="text-danger"></span>
+            </div>
+             <div class="form-group col">
+                <label asp-for="Model" class="control-label small" small></label>
+                <input asp-for="Model" class="form-control form-control-sm" />
+                <span asp-validation-for="Model" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col">
+                <label asp-for="Manufacturer" class="control-label small"></label>
+                <input asp-for="Manufacturer" class="form-control form-control-sm" />
+                <span asp-validation-for="Manufacturer" class="text-danger"></span>         
+            </div>
+            <div class="form-group col">
+                <label asp-for="SupplierId" class="control-label small"></label>                 
+                     <select asp-for="SupplierId" asp-items="@ViewBag._LoadddlAddressSupplier" id="SupplierId" class="form-control-sm" style="width:100%;">
+                         <option disabled selected>--- SELECT ---</option>
+                         <span asp-validation-for="SupplierId" class="text-danger"></span>
+                    </select>
+            </div>          
+          
+
+        </div>
+       
+       
+       <div class="form-row">
+            <div class="form-group col">
+                <label asp-for="Size" class="control-label small"></label>
+                <input asp-for="Size" class="form-control form-control-sm" />
+                <span asp-validation-for="Size" class="text-danger"></span>          
+            </div>
+            <div class="form-group col">
+               <label asp-for="Weight" class="control-label small"></label>
+                <input asp-for="Weight" class="form-control form-control-sm" />
+                <span asp-validation-for="Weight" class="text-danger"></span>           
+            </div>
+            <div class="form-group col">
+                <label asp-for="CountryId" class="control-label small"></label>                 
+                     <select asp-for="CountryId" asp-items="@ViewBag._LoadddlCountry" id="CountryId" class="form-control-sm" style="width:100%;">
+                         <option disabled selected>--- SELECT ---</option>
+                         <span asp-validation-for="CountryId" class="text-danger"></span>
+                    </select>
+               
+            </div>
+           
+        </div>
+
+
+       
+
+       
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-info btn-sm">
+            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+        </div>
+    </form>
+</div>
+
+
+<script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>

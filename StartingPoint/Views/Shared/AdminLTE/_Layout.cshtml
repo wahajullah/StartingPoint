@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject StartingPoint.Data.ApplicationDbContext Context
+@{
+    ApplicationUser _ApplicationUser = await UserManager.GetUserAsync(User);
+    LoginViewModel _LoginViewModel = new LoginViewModel();
+    _LoginViewModel.Id = _ApplicationUser.Id;
+}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="~/AdminLTE/images/SP-Logo.png" type="image/gif" sizes="16x16">
+    <title>@ViewData["Title"] - StartingPOINT</title>
+    <partial name="AdminLTE/_Styles" />
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <partial name="AdminLTE/_TopNavigation" model="_LoginViewModel" />
+        <partial name="AdminLTE/_MainNavigation" model="_ApplicationUser" />
+        <div class="content-wrapper">
+            <section class="content">
+                @RenderBody()
+            </section>
+        </div>
+        <partial name="~/Views/UIComponents/_SmallModal.cshtml" />
+        <partial name="~/Views/UIComponents/_MediumModal.cshtml" />
+        <partial name="~/Views/UIComponents/_BigModal.cshtml" />
+        <partial name="~/Views/UIComponents/_ExtraBigModal.cshtml" />
+        <partial name="~/Views/UIComponents/_ImageViewModal.cshtml" />
+
+        <partial name="AdminLTE/_Footer" />
+        <aside class="control-sidebar control-sidebar-dark">
+        </aside>
+    </div>
+    <partial name="AdminLTE/_Scripts" />
+    @*@RenderSection("Scripts", required: false)*@
+</body>
+</html>

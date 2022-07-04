@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+    <UserSecretsId>e8770a9e-2131-47b0-85c8-9f7ed844d00c</UserSecretsId>
+  </PropertyGroup>
+
+  
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.14" />
+    
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.6" />
+    
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.6" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+	<DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+	
+    <PackageReference Include="Sendgrid" Version="9.9.0" />
+	
+    <PackageReference Include="System.Drawing.Common" Version="5.0.0" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.2" />
+    <PackageReference Include="UAParser" Version="3.1.46" />
+  </ItemGroup>
+
+  
+  <ItemGroup>
+    <Folder Include="wwwroot\upload\" />
+  </ItemGroup>
+
+</Project>

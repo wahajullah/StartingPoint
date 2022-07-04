@@ -1,0 +1,47 @@
+
+@model StartingPoint.Models.Service
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+    <div calss="row">
+        <form asp-action="AddEdit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="CreatedDate" />
+            <input type="hidden" asp-for="CreatedBy" />
+            <div class="form-group" style="display:none">
+                <label asp-for="ServiceId" class="control-label small"></label>
+                <input asp-for="ServiceId" readonly="true" class="form-control form-control-sm" />
+                <span asp-validation-for="ServiceId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+               <label asp-for="DivisionID" class="control-label" small></label>                 
+                     <select asp-for="DivisionID" ondurationchange="abc"  asp-items="@ViewBag.LoadddlDivision" id="ServiceId" class="form-control-sm" style="width:100%;">
+                         <option disabled selected>--- SELECT ---</option>
+                         <span  asp-validation-for="DivisionID" class="text-danger"></span>
+                    </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShortText" class="control-label" small></label>
+                <input asp-for="ShortText" class="form-control form-control-sm" />
+                <span asp-validation-for="ShortText" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label" small></label>
+                <input asp-for="Description" class="form-control form-control-sm" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-info btn-sm">
+                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+            </div>
+        </form>
+    </div>    
+
+
+<script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+

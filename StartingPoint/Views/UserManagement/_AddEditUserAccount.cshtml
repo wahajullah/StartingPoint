@@ -1,0 +1,269 @@
+﻿@model StartingPoint.Models.UserAccountViewModel.UserProfileViewModel
+
+
+
+<div class="row">
+        <div class="col-md-12">
+            <form id="ApplicationUserForm">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="UserProfileId" id="UserProfileId" />
+                <input type="hidden" asp-for="ApplicationUserId" id="ApplicationUserId" />
+                <input type="hidden" asp-for="CreatedDate" id="CreatedDate" />
+                <div class="form-row">
+                    @*<div class="form-group col-md-2">
+                        <label asp-for="HRNumber" class="control-label small"></label>
+                        <input asp-for="HRNumber" class="form-control form-control-sm" />
+                        <span asp-validation-for="HRNumber" class="text-danger"></span>
+                    </div>*@
+                    <div class="form-group col-md-5">
+                        <label asp-for="FirstName" class="control-label small"></label>
+                        <input asp-for="FirstName" class="form-control form-control-sm" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                   <div class="form-group col-md-5">
+                        <label asp-for="LastName" class="control-label small"></label>
+                        <input asp-for="LastName" class="form-control form-control-sm" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                </div>
+                @*<div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label asp-for="DesignationId" class="control-label small"></label>                 
+                            <select asp-for="DesignationId" asp-items="@ViewBag._LoadddlAddressType" id="DesignationId" class="form-control-sm" style="width:100%;">
+                                <option disabled selected>--- SELECT ---</option>
+                            <span asp-validation-for="DesignationId" class="text-danger"></span>
+                            </select>                 
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="DepartmentId" class="control-label small"></label>                 
+                            <select asp-for="DepartmentId" asp-items="@ViewBag._LoadddlAddressType" id="DepartmentId" class="form-control-sm" style="width:100%;">
+                                <option disabled selected>--- SELECT ---</option>
+                            <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                            </select>                 
+                    </div>
+                     <div class="form-group col-md-4">
+                        <label asp-for="DivisionId" class="control-label small"></label>                 
+                            <select asp-for="DivisionId" asp-items="@ViewBag._LoadddlAddressType" id="DivisionId" class="form-control-sm" style="width:100%;">
+                                <option disabled selected>--- SELECT ---</option>
+                            <span asp-validation-for="DivisionId" class="text-danger"></span>
+                            </select>                 
+                    </div>
+                    
+                </div>   *@         
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label asp-for="PhoneNumber" class="control-label small"></label>
+                        <input asp-for="PhoneNumber" class="form-control form-control-sm" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                   <div class="form-group col-md-3">
+                        <label asp-for="Email" class="control-label small"></label>
+                        <input asp-for="Email" class="form-control form-control-sm" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-3" id="divPasswordHash">
+                        <label asp-for="PasswordHash" class="control-label small"></label>
+                        <input asp-for="PasswordHash" class="form-control form-control-sm" />
+                        <span asp-validation-for="PasswordHash" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-3" id="divConfirmPassword">
+                        <label asp-for="ConfirmPassword" class="control-label small"></label>
+                        <input asp-for="ConfirmPassword" class="form-control form-control-sm" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="Address" class="control-label small"></label>
+                        <input asp-for="Address" class="form-control form-control-sm" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                   <div class="form-group">
+                        <label class="control-label small" for="file">Choose a file</label>
+                        <div class="col-md-6">
+                            <span class="control-fileupload">
+                                    <input type="file" asp-for="ProfilePicture" />
+                                </span>
+                                <p>&nbsp;</p>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" onclick="SaveUser()" class="btn btn-info btn-sm">
+                    <button type="button"  id="btnAddEditUserAccountClose" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+                </div>               
+            </form>
+        </div>
+    </div>
+
+@*<div>
+    <div class="row">
+        <div class="col-md-12">
+            <form id="ApplicationUserForm">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="UserProfileId" id="UserProfileId" />
+                <input type="hidden" asp-for="ApplicationUserId" id="ApplicationUserId" />
+                <input type="hidden" asp-for="CreatedDate" id="CreatedDate" />
+
+                <div class="row">
+                    <div class="col-6 col-sm-6">
+                        <div class="form-group row">
+                            <label asp-for="FirstName" class="col-sm-3 col-form-label"></label>
+                            <div class="col-sm-9">
+                                <input asp-for="FirstName" class="form-control" id="FirstName" type="text" />
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="LastName" class="col-sm-3 col-form-label"></label>
+                            <div class="col-sm-9">
+                                <input asp-for="LastName" class="form-control" id="LastName" type="text" />
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="PhoneNumber" class="col-sm-3 col-form-label"></label>
+                            <div class="col-sm-9">
+                                <input asp-for="PhoneNumber" class="form-control" id="PhoneNumber" type="text" />
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Email" class="col-sm-3 col-form-label"></label>
+                            <div class="col-sm-9">
+                                <input asp-for="Email" class="form-control" id="Email" type="email" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row" id="divPasswordHash">
+                            <label asp-for="PasswordHash" class="col-sm-3 col-form-label"></label>
+                            <div class="col-sm-9">
+                                <input asp-for="PasswordHash" class="form-control" id="PasswordHash" type="password" />
+                                <span asp-validation-for="PasswordHash" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row" id="divConfirmPassword">
+                            <label asp-for="ConfirmPassword" class="col-sm-3 col-form-label"></label>
+                            <div class="col-sm-9">
+                                <input asp-for="ConfirmPassword" class="form-control" id="ConfirmPassword" type="password" />
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-sm-6">
+                        <div class="form-group row">
+                            <label asp-for="Address" class="col-sm-3 col-form-label"></label>
+                            <div class="col-sm-9">
+                                <input asp-for="Address" class="form-control" id="Address" type="text" />
+                                <span asp-validation-for="Address" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Country" class="col-sm-3 col-form-label"></label>
+                            <div class="col-sm-9">
+                                <input asp-for="Country" class="form-control" id="Country" type="text" />
+                                <span asp-validation-for="Country" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label" for="file">Choose a file :</label>
+                            <div class="col-sm-9">
+                                <span class="control-fileupload">
+                                    <input type="file" asp-for="ProfilePicture" />
+                                </span>
+                                <p>&nbsp;</p>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label"></label>
+                            <div class="col-sm-9">
+                                <input type="button" value="Save" onclick="SaveUser()" class="btn btn-info">
+                                <button type="button" id="btnAddEditUserAccountClose" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>*@
+
+
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+    var SaveUser = function () {
+        if (!FieldValidation('#FirstName')) {
+            FieldValidationAlert('#FirstName', 'First Name is Required.', "warning");
+            return;
+        }
+        if (!FieldValidation('#LastName')) {
+            FieldValidationAlert('#LastName', 'Last Name is Required.', "warning");
+            return;
+        }
+
+        if (!$("#ApplicationUserForm").valid()) {
+            FieldValidationAlert('#ConfirmPassword', 'Please fill up all input properly.', "warning");
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/UserManagement/AddEditUserAccount",
+            data: PreparedFormObj(),
+            processData: false,
+            contentType: false,
+            success: function (result) {
+                var _error = result.substring(0, 5);
+                if (_error == 'error') {
+                    var _result = result.slice(5);
+                    Swal.fire({
+                        title: _result,
+                        icon: "warning"
+                    }).then(function () {
+                        setTimeout(function () {
+                            $('#Email').focus();
+                        }, 400);
+                    });
+                }
+                else {
+                    Swal.fire({
+                        title: result,
+                        icon: "success"
+                    }).then(function () {
+                        document.getElementById("btnAddEditUserAccountClose").click();
+                        $('#tblUserAccount').DataTable().ajax.reload();
+                    });
+                }
+            },
+            error: function (errormessage) {
+                SwalSimpleAlert(errormessage.responseText, "warning");
+            }
+        });
+    }
+
+    var PreparedFormObj = function () {
+        var _FormData = new FormData()
+        _FormData.append('Id', $("#Id").val())
+        _FormData.append('UserProfileId', $("#UserProfileId").val())
+        _FormData.append('ApplicationUserId', $("#ApplicationUserId").val())
+
+        _FormData.append('CreatedDate', $("#CreatedDate").val())
+        _FormData.append('CreatedBy', $("#CreatedBy").val())
+
+        _FormData.append('ProfilePictureURL', $("#ProfilePictureURL").val())
+        _FormData.append('ProfilePicture', $('#ProfilePicture')[0].files[0])
+
+        _FormData.append('FirstName', $("#FirstName").val())
+        _FormData.append('LastName', $("#LastName").val())
+        _FormData.append('PhoneNumber', $("#PhoneNumber").val())
+        _FormData.append('Email', $("#Email").val())
+        _FormData.append('PasswordHash', $("#PasswordHash").val())
+
+        _FormData.append('ConfirmPassword', $("#ConfirmPassword").val())
+        _FormData.append('Address', $("#Address").val())
+        _FormData.append('Country', $("#Country").val())
+        return _FormData;
+    }
+</script>

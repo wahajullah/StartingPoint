@@ -1,0 +1,41 @@
+﻿
+@if (TempData["successAlert"] != null)
+{
+   
+    <div class="alert btn-info">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+        <p>@TempData["successAlert"]</p>
+    </div>
+}
+
+
+@if (TempData["errorAlert"] != null)
+{
+    <div class="alert btn-primary">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+        <p>@TempData["errorAlert"]</p>
+    </div>
+}
+
+@if (TempData["errorDuplication"] != null)
+{
+    <div class="alert btn-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+        <p>@TempData["errorDuplication"]</p>
+    </div>
+}
+
+
+<script>
+    $(document).ready(function () {
+        setTimeout(function () {
+        //$("#md").modal('show');
+            $(".alert").alert('close');
+        }, 5000);
+         //$("#md").modal('hide');
+        //if (TempData["successAlert"] != null) {
+        //    $(".modal").modal('show');
+        //}
+
+    });
+</script>

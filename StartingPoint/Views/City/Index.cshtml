@@ -1,0 +1,55 @@
+﻿<style>
+    .tableheader table tr th {
+        /* background-color: #808080;*/
+        font-weight: normal;
+        color: white;
+        padding: 5px;
+    }
+
+    .tableheader tbody tr td {
+        padding: 3px;
+        padding-right: 1em;
+        white-space: nowrap;
+        overflow: hidden;
+        /* width: 180px;*/
+        height: 25px;
+        text-overflow: ellipsis;
+    }
+</style>
+
+<div class="wrapper">
+    <br />
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">City Details</h3>
+                        <div class=" col-xs-6 text-right">
+                            <a class="btn btn-info btn-sm" onclick="AddEdit(0)"><i class="fa fa-plus"></i>&nbsp; Add Record</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="tableheader">
+                            <table id="tblCity" class="table table-bordered table-striped" width="100%">
+                                <thead style="background-color:steelblue">
+                                    <tr>
+                                        <th style="width:5%;display:none" >Id</th>
+                                        <th style="width:6%">Code</th>
+                                        <th>Name</th>
+                                        <th style="width:15%">Created Date</th>
+                                        <th style="width:5%">Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <partial name="~/Views/UIComponents/_bootstrapAlert.cshtml" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/City/City_CRUD.js"></script>
+<script src="~/js/City/City_Database.js"></script>

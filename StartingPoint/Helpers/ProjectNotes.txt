@@ -1,0 +1,18 @@
+﻿
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+
+
+Lat and long:
+https://www.w3schools.com/html/tryit.asp?filename=tryhtml5_geolocation
+
+
+SQL Server command line (sqlcmd)
+sqlcmd -S DEVSTATION\MSSQLSERVER2017 -U sa -P dev123456
+https://www.sqlshack.com/working-sql-server-command-line-sqlcmd/
+
+
+DB Reset Login:
+https://localhost:5001/Account/Login?ReturnUrl=%2F
+
+

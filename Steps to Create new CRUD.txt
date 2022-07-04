@@ -1,0 +1,19 @@
+Please follow this:
+1.  Create: Model
+~Sln.AMS\AMS\Model
+2. Create: View Model
+~Sln.AMS\AMS\Model
+3. Add Model into: ApplicationDbContext
+~Sln.AMS\AMS\Data
+3. Create: Controller
+~Sln.AMS\AMS\Controllers
+4. Create: View
+~Sln.AMS\AMS\View
+5. Create: JS
+~Sln.AMS\AMS\wwwroot\js
+
+6. Add page: Menu
+~Sln.AMS\AMS\Pages
+
+7. Load Menu:
+~Sln.AMS\AMS\Views\Shared\_AdminlteMainSidebar.cshtml

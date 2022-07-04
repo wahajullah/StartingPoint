@@ -1,0 +1,139 @@
+@model StartingPoint.Models.AddressBookViewModel.AddressBookCRUDViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div calss="row">
+    <form asp-action="AddEdit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="CreatedDate" />
+        <input type="hidden" asp-for="CreatedBy" />
+
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label asp-for="AddressId" class="control-label small"></label>
+                <input asp-for="AddressId" readonly="true" class="form-control form-control-sm" />
+                <span asp-validation-for="AddressId" class="text-danger"></span>               
+            </div>
+            <div class="form-group col">
+                <label asp-for="Name" class="control-label small"></label>
+                <input asp-for="Name" class="form-control form-control-sm" />
+                <span asp-validation-for="Name" class="text-danger"></span>                
+            </div>
+            <div class="form-group col">
+                 <label asp-for="JobTitle" class="control-label small"></label>
+                 <input asp-for="JobTitle" class="form-control form-control-sm" />
+                 <span asp-validation-for="JobTitle" class="text-danger"></span> 
+            </div>
+        </div>
+        <div class="form-row">
+             <div class="form-group col">
+                 <label asp-for="Company" class="control-label small"></label>
+                 <input asp-for="Company" class="form-control form-control-sm" />
+                 <span asp-validation-for="Company" class="text-danger"></span> 
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label asp-for="AddressTypeId" class="control-label small"></label> 
+                
+                     <select asp-for="AddressTypeId" asp-items="@ViewBag._LoadddlAddressType" id="AddressTypeId" class="form-control-sm" style="width:100%;">
+                         <option disabled selected>--- SELECT ---</option>
+                         <span asp-validation-for="AddressTypeId" class="text-danger"></span>
+                    </select>                 
+            </div>
+            <div class="form-group col">
+                <label asp-for="OPhone" class="control-label small" small></label>
+                <input asp-for="OPhone" class="form-control form-control-sm" />
+                <span asp-validation-for="OPhone" class="text-danger"></span>             
+            </div>
+            <div class="form-group col">
+                <label asp-for="OFax" class="control-label small" small></label>
+                <input asp-for="OFax" class="form-control form-control-sm" />
+                <span asp-validation-for="OFax" class="text-danger"></span>
+            </div>
+            <div class="form-group col">
+                <label asp-for="OEmail" class="control-label small" small></label>
+                <input asp-for="OEmail" class="form-control form-control-sm" />
+                <span asp-validation-for="OEmail" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col">
+                <label asp-for="Website" class="control-label small"></label>
+                <input asp-for="Website" class="form-control form-control-sm" />
+                <span asp-validation-for="Website" class="text-danger"></span>         
+            </div>
+            <div class="form-group col">
+                <label asp-for="Pobox" class="control-label small"></label>
+                <input asp-for="Pobox" class="form-control form-control-sm" />
+                <span asp-validation-for="Pobox" class="text-danger"></span>     
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="CityId" class="control-label small"></label>
+                
+                      <select asp-for="CityId" asp-items="@ViewBag._LoadddlCity" id="CityId" class="form-control-sm" style="width:100%;">
+                            <option disabled selected>--- SELECT ---</option>
+                            <span asp-validation-for="CityId" class="text-danger"></span>
+                     </select>             
+            </div>
+            <div class="form-group col-md-3">
+                 <label asp-for="CountryId" class="control-label small"></label>                
+                     <select asp-for="CountryId" asp-items="@ViewBag._LoadddlCountry" id="CountryId" class="form-control-sm" style="width:100%;">
+                        <option disabled selected>--- SELECT ---</option>
+                        <span asp-validation-for="CountryId" class="text-danger"></span>
+                    </select>                 
+            </div>
+
+        </div>
+        <div class="form-row">
+             <div class="form-group col">
+                <label asp-for="Address" class="control-label small"></label>               
+                <textarea asp-for="Address" class="form-control form-control-sm" rows="2"></textarea>
+                <span asp-validation-for="Address" class="text-danger"></span>     
+            </div>
+        </div>
+       <div>
+           <h6 style="color:coral">Personnal Details</h6>
+       </div>
+       <div class="form-row">
+            <div class="form-group col">
+                <label asp-for="PPhone" class="control-label small"></label>
+                <input asp-for="PPhone" class="form-control form-control-sm" />
+                <span asp-validation-for="PPhone" class="text-danger"></span>          
+            </div>
+            <div class="form-group col">
+               <label asp-for="Mobile" class="control-label small"></label>
+                <input asp-for="Mobile" class="form-control form-control-sm" />
+                <span asp-validation-for="Mobile" class="text-danger"></span>           
+            </div>
+            <div class="form-group col">
+               <label asp-for="PEmail" class="control-label small"></label>
+                <input asp-for="PEmail" class="form-control form-control-sm" />
+                <span asp-validation-for="PEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group col">
+
+                <label asp-for="StatusId" class="control-label small"></label>
+                <select asp-for="StatusId" asp-items="@ViewBag._LoadddlStatus" id="StatusId" class="form-control-sm" style="width:100%;">
+                    <option disabled selected>--- SELECT ---</option>
+                    <span asp-validation-for="StatusId" class="text-danger"></span>
+                </select>               
+            </div>
+        </div>
+
+
+       
+
+       
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-info btn-sm">
+            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+        </div>
+    </form>
+</div>
+
+
+<script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>

@@ -1,0 +1,62 @@
+@model StartingPoint.Models.MaterialGroupViewModel.MaterialGroupCRUDViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div calss="row">
+    <form asp-action="AddEdit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="CreatedDate" />
+        <input type="hidden" asp-for="CreatedBy" />
+
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label asp-for="MaterialGroupId" class="control-label small"></label>
+                <input asp-for="MaterialGroupId" readonly="true" class="form-control form-control-sm" />
+                <span asp-validation-for="MaterialGroupId" class="text-danger"></span>               
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="ServiceId" class="control-label small"></label> 
+                
+                     <select asp-for="ServiceId" asp-items="@ViewBag._LoadDataService" id="ServiceId" class="form-control-sm" style="width:100%;">
+                         <option disabled selected>--- SELECT ---</option>
+                         <span asp-validation-for="ServiceId" class="text-danger"></span>
+                    </select>                 
+            </div> 
+        </div>
+        <div class="form-row">
+             <div class="form-group col">
+                 <label asp-for="Description" class="control-label small"></label>
+                 <input asp-for="Description" disabled class="form-control form-control-sm" />
+                 <span asp-validation-for="Description" class="text-danger"></span> 
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="form-group col">
+                <label class="small">Created by</label>
+                <input asp-for="CreatedBy" disabled class="form-control form-control-sm" /> 
+            </div>
+            <div class="form-group col">
+                <label class="small">Created Date</label>
+                <input asp-for="CreatedDate" disabled class="form-control form-control-sm" />   
+            </div>
+            <div class="form-group col">
+                <label class="small">Modified by</label>
+            <input asp-for="ModifiedBy" disabled class="form-control form-control-sm" />  
+            </div>
+             <div class="form-group col">
+                 <label class="small">Modified Date</label>
+            <input asp-for="ModifiedDate" disabled class="form-control form-control-sm" />
+            </div>
+        </div>  
+        <div class="form-group">           
+            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+        </div>
+    </form>
+</div>
+
+
+<script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>

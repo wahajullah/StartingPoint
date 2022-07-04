@@ -1,0 +1,600 @@
+﻿@model StartingPoint.Models.ApplicationUser;
+@inject StartingPoint.Data.ApplicationDbContext context;
+@inject StartingPoint.Services.IRoles _roles;
+
+@using Microsoft.Extensions.Options;
+@inject IOptions<StartingPoint.Models.CommonViewModel.ApplicationInfo> _ApplicationInfo;
+
+@{
+    UserProfile profile = context.UserProfile.SingleOrDefault(x => x.ApplicationUserId.Equals(Model.Id));
+    var _MainMenuViewModel = await _roles.RolebaseMenuLoad(Model.Id);
+
+
+    <aside class="main-sidebar main-sidebar-custom sidebar-dark-primary elevation-4">
+        @*<a href="../../index3.html" class="brand-link">
+    <img src="~/AdminLTE/dist/Logo/StartingPoint.png" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <span class="brand-text font-weight-bold">StartingPOINT</span>
+
+    </a>*@
+        <a href="@Url.Action("Index", "Dashboard")" class="brand-link">
+            <img src='~/AdminLTE/images/SP-Logo.png' alt="AdminLTE Logo" class="brand-image img-circle elevation-3">
+            <span class="brand-text font-weight-light">@_ApplicationInfo.Value.Name</span>
+        </a>
+        <div class="sidebar">
+
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <li class="nav-item">
+                        <a asp-action="Index" asp-controller="Dashboard" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt" style="color:#3c8dbc"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    @if(_MainMenuViewModel.AddressBook)
+                    {
+                         <li class="nav-item">
+                                <a href="@MainMenu.AddressBook.Path" class="nav-link">
+                                    <i class="nav-icon fas fa-solid fa-address-book" style="color:#3c8dbc";margin-left:2%"></i>
+                                    <p>@MainMenu.AddressBook.PageName<i class="right fas fa-angle-left" style="color:coral"></i></p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                        @if (_MainMenuViewModel.AddressBookDetails)
+                                        {
+                                            <li class="nav-item">
+                                                <a href="@MainMenu.AddressBookDetails.Path" class="nav-link">
+                                                    <i class="nav-icon fas fa-angle-right nav-icon" style="color:coral"></i>
+                                                    <p>@MainMenu.AddressBookDetails.PageName</p>
+                                                </a>
+                                            </li>
+                                         }
+                                    </ul>
+                                <ul class="nav nav-treeview">
+                                @if (_MainMenuViewModel.AddressType)
+                                {
+                                    <li class="nav-item">
+                                        <a href="@MainMenu.AddressType.Path" class="nav-link">
+                                            <i class="nav-icon fas fa-angle-right nav-icon" style="color:coral"></i>
+                                            <p>@MainMenu.AddressType.PageName</p>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+
+                            </li> 
+                    }
+
+                    @if (_MainMenuViewModel.MEPDivision)
+                    {
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-solid fa-landmark" style="color:#3c8dbc"></i>
+                                <p>Master Details<i class="right fas fa-angle-left" style="color:coral"></i></p>
+                            </a>                            
+                            <ul class="nav nav-treeview">
+                             <li class="nav-item">
+                                                <a href="@MainMenu.Division.Path" class="nav-link">
+                                                    <i class="nav-icon fas fa-angle-right nav-icon" style="color:coral"></i>
+                                                    <p>@MainMenu.Division.PageName</p>
+                                                </a>
+                                            </li>
+                                             <li class="nav-item">
+                                                <a href="@MainMenu.Service.Path" class="nav-link">
+                                                    <i class="nav-icon fas fa-angle-right nav-icon" style="color:coral"></i>
+                                                    <p>@MainMenu.Service.PageName</p>
+                                                </a>
+                                            </li>
+                                             <li class="nav-item">
+                                                <a href="@MainMenu.Group.Path" class="nav-link">
+                                                    <i class="nav-icon fas fa-angle-right nav-icon" style="color:coral"></i>
+                                                    <p>@MainMenu.Group.PageName</p>
+                                                </a>
+                                            </li>
+                                             <li class="nav-item">
+                                                <a href="@MainMenu.LineItem.Path" class="nav-link">
+                                                    <i class="nav-icon fas fa-angle-right nav-icon" style="color:coral"></i>
+                                                    <p>@MainMenu.LineItem.PageName</p>
+                                                </a>
+                                            </li>
+
+                            </ul>
+                        </li>
+                        @if (_MainMenuViewModel.MEPEstimation)
+                        {
+                            <li class="nav nav-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-solid fa-address-book" style="color:coral;margin-left:2%"></i>
+                                    <p>Estimation<i class="right fas fa-angle-left" style="color:coral"></i></p>
+                                </a>
+                            </li>
+                        }
+                        @if (_MainMenuViewModel.MEPProjects)
+                        {
+                            <li class="nav nav-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-solid fa-address-book" style="color:coral;margin-left:2%"></i>
+                                    <p>Projects<i class="right fas fa-angle-left" style="color:coral"></i></p>
+                                </a>
+                            </li>
+                        }
+                        @if (_MainMenuViewModel.CentralStore)
+                        {
+                            <li class="nav nav-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-solid fa-address-book" style="color:coral;margin-left:2%"></i>
+                                    <p>Stores<i class="right fas fa-angle-left" style="color:coral"></i></p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                @if (_MainMenuViewModel.MaterialGroup)
+                                {
+                                    <li class="nav-item">                                               
+                                                    <a href="@MainMenu.MaterialGroup.Path" class="nav-link">
+                                                        <i class="nav-icon fas fa-solid fa-address-book" style="color:coral"></i>
+                                                        <p>@MainMenu.MaterialGroup.PageName</p>
+                                                    </a>                   
+                                    </li>
+                                }
+                            </ul>
+                            </li>
+                        }
+
+
+                        @if (_MainMenuViewModel.MEPPurchase)
+                        {
+                            <li class="nav nav-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-solid fa-address-book" style="color:coral;margin-left:2%"></i>
+                                    <p>Purchase<i class="right fas fa-angle-left" style="color:coral"></i></p>
+                                </a>
+                            </li>
+                        }
+                       
+                    }
+
+                    
+                    @if (_MainMenuViewModel.FMDivision)
+                    {
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-solid fa-landmark" style="color:#3c8dbc"></i>
+                                <p>Facility Division<i class="right fas fa-angle-left" style="color:coral"></i></p>
+                            </a>
+                        </li>
+
+                    }
+                    @if (_MainMenuViewModel.FireDivision)
+                    {
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-solid fa-landmark" style="color:#3c8dbc"></i>
+                                <p>Fire Division<i class="right fas fa-angle-left" style="color:coral"></i></p>
+                            </a>
+                        </li>
+
+                    }
+                    @if (_MainMenuViewModel.ESCODivision)
+                    {
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-solid fa-landmark" style="color:#3c8dbc"></i>
+                                <p>ESCO Division<i class="right fas fa-angle-left" style="color:coral"></i></p>
+                            </a>
+                        </li>
+
+                    }
+                    @if (_MainMenuViewModel.ELVDivision)
+                    {
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-solid fa-landmark" style="color:#3c8dbc"></i>
+                                <p>ELV Division<i class="right fas fa-angle-left" style="color:coral"></i></p>
+                            </a>
+                        </li>
+
+                    }
+                    @if (_MainMenuViewModel.GeneralDepartments)
+                    {
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-solid fa-landmark" style="color:#3c8dbc"></i>
+                                <p>General Departments<i class="right fas fa-angle-left" style="color:coral"></i></p>
+                            </a>
+                        </li>
+
+                    }
+                    @if (_MainMenuViewModel.CentralStore)
+                    {
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-solid fa-store" style="color:#3c8dbc"></i>
+                                <p>Central Stores<i class="right fas fa-angle-left" style="color:coral"></i></p>                                
+                            </a>
+                            <ul class="nav nav-treeview">
+                                @if (_MainMenuViewModel.MaterialGroup)
+                                {
+                                    <li class="nav-item">                                               
+                                                    <a href="@MainMenu.MaterialGroup.Path" class="nav-link">
+                                                        <i class="nav-icon fas fa-angle-right" style="color:coral"></i>
+                                                        <p>@MainMenu.MaterialGroup.PageName</p>
+                                                    </a>     
+                                                   
+                                    </li>
+                                }
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                @if (_MainMenuViewModel.Material)
+                                {
+                                    <li class="nav-item">                                               
+                                                    <a href="@MainMenu.Material.Path" class="nav-link">
+                                                        <i class="nav-icon fas fa-angle-right" style="color:coral"></i>
+                                                        <p>@MainMenu.Material.PageName</p>
+                                                    </a>     
+                                                   
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+
+                    }
+                    <li class="nav-header" style="color:coral">SETTINGS</li>
+                    @if (_MainMenuViewModel.GeneralSettings)
+                    {
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-cog" style="color:#3c8dbc"></i>
+                                <p>General<i class="right fas fa-angle-left" style="color:coral"></i></p>
+                            </a>
+                             <ul class="nav nav-treeview">
+                                @if (_MainMenuViewModel.Service)
+                                {
+                                    <li class="nav-item">
+                                        <a href="@MainMenu.Service.Path" class="nav-link">
+                                            <i class="nav-icon fas fa-angle-right nav-icon" style="color:coral"></i>
+                                            <p>@MainMenu.Service.PageName</p>
+                                        </a>
+                                    </li>
+                                }
+
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                @if (_MainMenuViewModel.City)
+                                {
+                                    <li class="nav-item">
+                                        <a href="@MainMenu.City.Path" class="nav-link">
+                                            <i class="nav-icon fas fa-angle-right nav-icon" style="color:coral"></i>
+                                            <p>@MainMenu.City.PageName</p>
+                                        </a>
+                                    </li>
+                                }
+
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                @if (_MainMenuViewModel.Country)
+                                {
+                                    <li class="nav-item">
+                                        <a href="@MainMenu.Country.Path" class="nav-link">
+                                            <i class="nav-icon fas fa-angle-right nav-icon" style="color:coral"></i>
+                                            <p>@MainMenu.Country.PageName</p>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                @if (_MainMenuViewModel.Status)
+                                {
+                                    <li class="nav-item">
+                                        <a href="@MainMenu.Status.Path" class="nav-link">
+                                            <i class="nav-icon fas fa-angle-right nav-icon" style="color:coral"></i>
+                                            <p>@MainMenu.Status.PageName</p>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                @if (_MainMenuViewModel.PaymentTerm)
+                                {
+                                    <li class="nav-item">
+                                        <a href="@MainMenu.PaymentTerm.Path" class="nav-link">
+                                            <i class="nav-icon fas fa-angle-right nav-icon" style="color:coral"></i>
+                                            <p>@MainMenu.PaymentTerm.PageName</p>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                             <ul class="nav nav-treeview">
+                                @if (_MainMenuViewModel.Designation)
+                                {
+                                    <li class="nav-item">
+                                        <a href="@MainMenu.Designation.Path" class="nav-link">
+                                            <i class="nav-icon fas fa-angle-right nav-icon" style="color:coral"></i>
+                                            <p>@MainMenu.Designation.PageName</p>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                             <ul class="nav nav-treeview">
+                                @if (_MainMenuViewModel.Department)
+                                {
+                                    <li class="nav-item">
+                                        <a href="@MainMenu.Department.Path" class="nav-link">
+                                            <i class="nav-icon fas fa-angle-right nav-icon" style="color:coral"></i>
+                                            <p>@MainMenu.Department.PageName</p>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                             <ul class="nav nav-treeview">
+                                @if (_MainMenuViewModel.Division)
+                                {
+                                    <li class="nav-item">
+                                        <a href="@MainMenu.Division.Path" class="nav-link">
+                                            <i class="nav-icon fas fa-angle-right nav-icon" style="color:coral"></i>
+                                            <p>@MainMenu.Division.PageName</p>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                     
+
+
+                    <li class="nav-header" style="color:coral">ADMINISTRATION</li>
+
+                    @if (_MainMenuViewModel.UserManagement)
+                    {
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user-clock" style="color:#3c8dbc"></i>
+                                <p>
+                                    Manage User
+                                    <i class="right fas fa-angle-left" style="color:coral"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                @if (_MainMenuViewModel.UserManagement)
+                                {
+                                    <li class="nav-item">
+                                        <a href="@MainMenu.UserManagement.Path" class="nav-link">
+                                            <i class="nav-icon fas fa-user-shield" style="color:coral;margin-left:2%"></i>
+                                            <p>@MainMenu.UserManagement.PageName</p>
+                                        </a>
+                                    </li>
+                                }
+                                @if (_MainMenuViewModel.ManagePageAccess)
+                                {
+                                    <li class="nav-item">
+                                        <a href="@MainMenu.ManagePageAccess.Path" class="nav-link">
+                                            <i class="nav-icon fas fa-toolbox" style="color:coral;margin-left:2%"></i>
+                                            <p>@MainMenu.ManagePageAccess.PageName</p>
+                                        </a>
+                                    </li>
+                                }
+                                @if (_MainMenuViewModel.EmailSetting)
+                                {
+                                    <li class="nav-item">
+                                        <a href="@MainMenu.EmailSetting.Path" class="nav-link">
+                                            <i class="nav-icon fas fa-envelope" style="color:coral;margin-left:2%"></i>
+                                            <p>@MainMenu.EmailSetting.PageName</p>
+                                        </a>
+                                    </li>
+                                }
+                                @if (_MainMenuViewModel.UserProfile)
+                                {
+                                    <li class="nav-item">
+                                        <a href="@MainMenu.UserProfile.Path" class="nav-link">
+                                            <i class="nav-icon fas fa-user-circle" style="color:coral;margin-left:2%"></i>
+                                            <p>@MainMenu.UserProfile.PageName</p>
+                                        </a>
+                                    </li>
+                                }
+
+                                @if (_MainMenuViewModel.IdentitySetting)
+                                {
+                                    <li class="nav-item">
+                                        <a href="@MainMenu.IdentitySetting.Path" class="nav-link">
+                                            <i class="nav-icon fas fa-user-secret" style="color:coral;margin-left:2%"></i>
+                                            <p>@MainMenu.IdentitySetting.PageName</p>
+                                        </a>
+                                    </li>
+                                }
+                                @if (_MainMenuViewModel.LoginHistory)
+                                {
+                                    <li class="nav-item">
+                                        <a href="@MainMenu.LoginHistory.Path" class="nav-link">
+                                            <i class="nav-icon fas fa-history" style="color:coral;margin-left:2%"></i>
+                                            <p>@MainMenu.LoginHistory.PageName</p>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+                    }
+
+                    @*@if (_MainMenuViewModel.City)
+                {
+                <li class="nav-item">
+                <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-cog" style="color:#3c8dbc"></i>
+                <p>Administration<i class="right fas fa-angle-left" style="color:coral"></i></p>
+                </a>
+                <ul class="nav nav-treeview">
+                <li class="nav-item">
+                <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-cogs" style="color:coral;margin-left:2%"></i>
+                <p> General<i class="right fas fa-angle-left" style="color:coral"></i></p>
+                </a>
+                <ul class="nav nav-treeview">
+                @if (_MainMenuViewModel.City)
+                {
+                <li class="nav-item">
+                <a href="@MainMenu.City.Path" class="nav-link">
+                <i class="nav-icon fas fa-angle-right nav-icon" style="color:coral"></i>
+                <p>@MainMenu.City.PageName</p>
+                </a>
+                </li>
+                }
+                </ul>
+
+                <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-solid fa-print" style="color:coral;margin-left:2%"></i>
+                <p> Reports</p>
+                </a>
+                </li>
+                </ul>
+                </li>
+                }
+
+
+                @if (_MainMenuViewModel.Employee)
+                {
+                <li class="nav-item has-treeview">
+                <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                Manage Employee
+                <i class="right fas fa-angle-left"></i>
+                </p>
+                </a>
+                <ul class="nav nav-treeview">
+                @if (_MainMenuViewModel.Employee)
+                {
+                <li class="nav-item">
+                <a href="@MainMenu.Employee.Path" class="nav-link">
+                <i class="nav-icon fas fa-industry"></i>
+                <p>@MainMenu.Employee.PageName</p>
+                </a>
+                </li>
+                }
+                @if (_MainMenuViewModel.Department)
+                {
+                <li class="nav-item">
+                <a href="@MainMenu.Department.Path" class="nav-link">
+                <i class="nav-icon fas fa-star"></i>
+                <p>@MainMenu.Department.PageName</p>
+                </a>
+                </li>
+                }
+                @if (_MainMenuViewModel.SubDepartment)
+                {
+                <li class="nav-item">
+                <a href="@MainMenu.SubDepartment.Path" class="nav-link">
+                <i class="nav-icon fas fa-desktop"></i>
+                <p>@MainMenu.SubDepartment.PageName</p>
+                </a>
+                </li>
+                }
+                @if (_MainMenuViewModel.Designation)
+                {
+                <li class="nav-item">
+                <a href="@MainMenu.Designation.Path" class="nav-link">
+                <i class="nav-icon fas fa-heart"></i>
+                <p>@MainMenu.Designation.PageName</p>
+                </a>
+                </li>
+                }
+                </ul>
+                </li>
+                }
+                @if (_MainMenuViewModel.UserManagement)
+                {
+                <li class="nav-item has-treeview">
+                <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-user-clock"></i>
+                <p>
+                Manage User
+                <i class="right fas fa-angle-left"></i>
+                </p>
+                </a>
+                <ul class="nav nav-treeview">
+                @if (_MainMenuViewModel.UserManagement)
+                {
+                <li class="nav-item">
+                <a href="@MainMenu.UserManagement.Path" class="nav-link">
+                <i class="nav-icon fas fa-user-shield"></i>
+                <p>@MainMenu.UserManagement.PageName</p>
+                </a>
+                </li>
+                }
+                @if (_MainMenuViewModel.ManagePageAccess)
+                {
+                <li class="nav-item">
+                <a href="@MainMenu.ManagePageAccess.Path" class="nav-link">
+                <i class="nav-icon fas fa-toolbox"></i>
+                <p>@MainMenu.ManagePageAccess.PageName</p>
+                </a>
+                </li>
+                }
+                @if (_MainMenuViewModel.EmailSetting)
+                {
+                <li class="nav-item">
+                <a href="@MainMenu.EmailSetting.Path" class="nav-link">
+                <i class="nav-icon fas fa-envelope"></i>
+                <p>@MainMenu.EmailSetting.PageName</p>
+                </a>
+                </li>
+                }
+                @if (_MainMenuViewModel.UserProfile)
+                {
+                <li class="nav-item">
+                <a href="@MainMenu.UserProfile.Path" class="nav-link">
+                <i class="nav-icon fas fa-user-circle"></i>
+                <p>@MainMenu.UserProfile.PageName</p>
+                </a>
+                </li>
+                }
+
+                @if (_MainMenuViewModel.IdentitySetting)
+                {
+                <li class="nav-item">
+                <a href="@MainMenu.IdentitySetting.Path" class="nav-link">
+                <i class="nav-icon fas fa-user-secret"></i>
+                <p>@MainMenu.IdentitySetting.PageName</p>
+                </a>
+                </li>
+                }
+                @if (_MainMenuViewModel.LoginHistory)
+                {
+                <li class="nav-item">
+                <a href="@MainMenu.LoginHistory.Path" class="nav-link">
+                <i class="nav-icon fas fa-history"></i>
+                <p>@MainMenu.LoginHistory.PageName</p>
+                </a>
+                </li>
+                }
+                </ul>
+                </li>
+                }*@
+
+
+
+                </ul>
+            </nav>
+        </div>
+    </aside>
+}
+
+@*<script>
+    var url = window.location;
+    // for sidebar menu entirely but not cover treeview
+    $('ul.nav-sidebar a').filter(function () {
+        return this.href == url;
+    }).addClass('active');
+
+    // for treeview
+    $('ul.nav-treeview a').filter(function () {
+        return this.href == url;
+    }).parentsUntil(".nav-sidebar > .nav-treeview").addClass('menu-open').prev('a').addClass('active');
+</script>*@
+
+<script>
+    var url = window.location;
+    // for sidebar menu entirely but not cover treeview
+    $('ul.nav-sidebar a').filter(function() {
+        return this.href == url;
+    }).addClass('nav-link');
+
+    // for treeview
+    $('ul.nav-treeview a').filter(function() {
+        return this.href == url;
+    }).parentsUntil(".nav-sidebar > .nav-treeview").addClass('menu-open').prev('a');
+</script>

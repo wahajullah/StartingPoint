@@ -1,0 +1,124 @@
+@model StartingPoint.Models.MaterialViewModel.MaterialCRUDViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div calss="row">
+    <form asp-action="AddEdit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="CreatedDate" />
+        <input type="hidden" asp-for="CreatedBy" />
+
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label asp-for="MaterialId" class="control-label small"></label>
+                <input asp-for="MaterialId" readonly="true" class="form-control form-control-sm" />
+                <span asp-validation-for="MaterialId" class="text-danger"></span>               
+            </div>
+            <div class="form-group col">
+                <label asp-for="ServiceId" class="control-label small"></label>
+                <input asp-for="ServiceId" class="form-control form-control-sm" />
+                <span asp-validation-for="ServiceId" class="text-danger"></span>                
+            </div>
+            <div class="form-group col">
+                 <label asp-for="MaterialGroupId" class="control-label small"></label>
+                 <input asp-for="MaterialGroupId" class="form-control form-control-sm" />
+                 <span asp-validation-for="MaterialGroupId" class="text-danger"></span> 
+            </div>
+        </div>
+        <div class="form-row">
+             <div class="form-group col">
+                 <label asp-for="Description" class="control-label small"></label>
+                 <input asp-for="Description" disabled class="form-control form-control-sm" />
+                 <span asp-validation-for="Description" class="text-danger"></span> 
+            </div>
+        </div>
+        <div class="form-row">            
+            <div class="form-group col">
+                <label asp-for="Unit" class="control-label small" small></label>
+                <input asp-for="Unit" disabled class="form-control form-control-sm" />
+                <span asp-validation-for="Unit" class="text-danger"></span>             
+            </div>
+            <div class="form-group col">
+                <label asp-for="Rate" class="control-label small" small></label>
+                <input asp-for="Rate" disabled class="form-control form-control-sm" />
+                <span asp-validation-for="Rate" class="text-danger"></span>
+            </div>
+            <div class="form-group col">
+                <label asp-for="Brand" class="control-label small" small></label>
+                <input asp-for="Brand" disabled class="form-control form-control-sm" />
+                <span asp-validation-for="Brand" class="text-danger"></span>
+            </div>
+             <div class="form-group col">
+                <label asp-for="Model" class="control-label small" small></label>
+                <input asp-for="Model" disabled class="form-control form-control-sm" />
+                <span asp-validation-for="Model" class="text-danger"></span>
+            </div>
+        </div>
+       <div class="form-row">
+            <div class="form-group col">
+                <label asp-for="Size" class="control-label small"></label>
+                <input asp-for="Size" disabled class="form-control form-control-sm" />
+                <span asp-validation-for="Size" class="text-danger"></span>          
+            </div>
+            <div class="form-group col">
+               <label asp-for="Weight" class="control-label small"></label>
+                <input asp-for="Weight" disabled class="form-control form-control-sm" />
+                <span asp-validation-for="Weight" class="text-danger"></span>           
+            </div>
+            <div class="form-group col">
+               <label asp-for="CountryId" class="control-label small"></label>
+                <input asp-for="CountryId" class="form-control form-control-sm" />
+                <span asp-validation-for="CountryId" class="text-danger"></span>
+            </div>
+           
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col">
+                <label asp-for="Manufacturer" class="control-label small"></label>
+                <input asp-for="Manufacturer" disabled class="form-control form-control-sm" />
+                <span asp-validation-for="Manufacturer" class="text-danger"></span>         
+            </div>
+            <div class="form-group col">
+                <label asp-for="SupplierId" class="control-label small"></label>
+                <input asp-for="SupplierId" class="form-control form-control-sm" />
+                <span asp-validation-for="SupplierId" class="text-danger"></span>     
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col">
+                <label class="small">Created by</label>
+                <input asp-for="CreatedBy" disabled class="form-control form-control-sm" /> 
+            </div>
+            <div class="form-group col">
+                <label class="small">Created Date</label>
+                <input asp-for="CreatedDate" disabled class="form-control form-control-sm" />   
+            </div>
+            <div class="form-group col">
+                <label class="small">Modified by</label>
+            <input asp-for="ModifiedBy" disabled class="form-control form-control-sm" />  
+            </div>
+             <div class="form-group col">
+                 <label class="small">Modified Date</label>
+            <input asp-for="ModifiedDate" disabled class="form-control form-control-sm" />
+            </div>
+        </div>      
+      
+              
+
+       
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-info btn-sm">
+            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+<script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>

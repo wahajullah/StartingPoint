@@ -1,0 +1,55 @@
+﻿@using Microsoft.Extensions.Options;
+@inject IOptions<StartingPoint.Models.CommonViewModel.ApplicationInfo> _ApplicationInfo;
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="~/AdminLTE/images/SP-Icon.ico" type="image/gif" sizes="16x16">
+
+    <title>@ViewData["Title"]</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <link rel="stylesheet" href="~/AdminLTE/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="~/AdminLTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <link rel="stylesheet" href="~/AdminLTE/dist/css/adminlte.min.css">
+    <link href="~/lib/toastr/toastr.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+</head>
+<body class="hold-transition login-page" style="background-image: url('/AdminLTE/images/SP-Background.jpg') ; background-size: cover;">
+    <div class="login-box">
+        @*<div class="login-logo">
+            <a href="#" style="color:coral;font-weight:400;">@_ApplicationInfo.Value.Name</a>
+        </div>*@
+        <div class="card">
+            <div class="login-logo">
+                <div class="card-header" style="background-color:steelblue">
+                    <a href="#" style="color:white;font-weight:300;">@_ApplicationInfo.Value.Name</a>
+                </div>               
+            </div>
+            <div class="card-body login-card-body">
+                @RenderBody()
+            </div>
+            <div class="text-center">
+                <a href="@Url.Action("Login", "Account")">Or sign in as a different user</a>
+            </div>
+            <div class="text-right">
+                <span style="color:black;font-size:small;" class="pull-right">@_ApplicationInfo.Value.Version</span>
+            </div>
+        </div>        
+    </div>
+
+       <script src="~/AdminLTE/plugins/jquery/jquery.min.js"></script>
+    <script src="~/AdminLTE/dist/js/adminlte.js"></script>
+    <script src="~/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/toastr/toastr.min.js"></script>
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>
