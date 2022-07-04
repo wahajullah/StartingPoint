@@ -29,6 +29,7 @@ namespace StartingPoint.Controllers
         [HttpPost]
         public IActionResult GetDataTabelData()
         {
+
             try
             {
                 var draw = HttpContext.Request.Form["draw"].FirstOrDefault();
