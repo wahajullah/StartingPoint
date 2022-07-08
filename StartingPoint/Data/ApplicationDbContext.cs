@@ -50,5 +50,6 @@ namespace StartingPoint.Data
         public DbSet<LineItems> LineItems { get; set; }
 
         public DbSet<Service> Services { get; set; }
+        public DbSet<Enquiry> Enquiry { get; set; }
     }
 }
