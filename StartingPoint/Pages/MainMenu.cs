@@ -184,6 +184,14 @@
             public const string ControllerName = "Division";
             public const string ActionName = "Index";
         }
+        public static class Enquiry
+        {
+            public const string PageName = "Enquiry Details";
+            public const string RoleName = "Enquiry";
+            public const string Path = "/Enquiry/Index";
+            public const string ControllerName = "Enquiry";
+            public const string ActionName = "Index";
+        }
         
         public static class Group
         {
