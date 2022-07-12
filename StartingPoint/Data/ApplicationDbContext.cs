@@ -51,5 +51,6 @@ namespace StartingPoint.Data
 
         public DbSet<Service> Services { get; set; }
         public DbSet<Enquiry> Enquiry { get; set; }
+        public DbSet<CityTest> cityTests { get; set; }
     }
 }
